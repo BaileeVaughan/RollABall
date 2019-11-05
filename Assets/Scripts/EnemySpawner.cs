@@ -18,6 +18,6 @@ public class EnemySpawner : NetworkBehaviour
         Vector3 spawnPosition = new Vector3(Random.Range(-4f, 4f), this.transform.position.y, Random.Range(-4f, 4f));
         GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity) as GameObject;
         NetworkServer.Spawn(enemy);
-        //Destroy(enemy, 10);
+        Destroy(enemy, 10);
     }
 }
