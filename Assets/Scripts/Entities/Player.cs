@@ -20,7 +20,7 @@ public class Player : NetworkBehaviour
     private void OnDestroy()
     {
         Destroy(attachedCamera.gameObject);
-        Destroy(attachedVirtualCamera.gameObject);
+        Destroy(attachedVirtualCamera.gameObject); //kills all cameras when the scene is destroyed
     }
     private void Start()
     {
@@ -29,12 +29,12 @@ public class Player : NetworkBehaviour
         rigid = GetComponent<Rigidbody>();
         if (isLocalPlayer)
         {
-            attachedVirtualCamera.gameObject.SetActive(true);
+            attachedVirtualCamera.gameObject.SetActive(true); //if this is our player, attach this camera
             attachedCamera.rect = new Rect(0f, 0f, .5f, 1f);
         }
         else
         {
-            attachedVirtualCamera.gameObject.SetActive(false);
+            attachedVirtualCamera.gameObject.SetActive(false); //if this is not our player, hide this camera
             attachedCamera.rect = new Rect(.5f, 0f, .5f, 1f);
         }
     }
@@ -48,7 +48,7 @@ public class Player : NetworkBehaviour
         Item item = col.GetComponent<Item>();
         if (item)
         {
-            item.Collect();
+            item.Collect(); //collects item when triggered
         }
     }
     private void Update()

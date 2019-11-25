@@ -22,7 +22,7 @@ public class Bomb : NetworkBehaviour
     public IEnumerator Explode()
     {
         yield return new WaitForSeconds(explodeDelay);
-        CmdExplode(transform.position, explosionRadius);
+        CmdExplode(transform.position, explosionRadius); //waits, then releases its explosion
     }
 
     [Command]
@@ -32,7 +32,7 @@ public class Bomb : NetworkBehaviour
         Collider[] hits = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (var hit in hits)
         {
-            NetworkServer.Destroy(hit.gameObject);
+            NetworkServer.Destroy(hit.gameObject); //if any player is hit, destroy the player
         }
     }
 }
